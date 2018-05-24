@@ -5,7 +5,7 @@ Gera dados estatisticos de um arquivo csv.
 
 
 Equipe:
-  Ítalo Cavalcante
-  João Esau
-  João Vitor Pinheiro
-  Jordan "Hal" Ferreira  
+  Ítalo Cavalcante;
+  João Esau;
+  João Vitor Pinheiro;
+  Jordan "Hal" Ferreira;
