@@ -13,3 +13,5 @@ Equipe:
   João Vitor Pinheiro;
   
   Jordan "Hal" Ferreira;
+  
+  Levi Azevedo;
