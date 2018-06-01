@@ -58,7 +58,7 @@ public class LerArquivo {
 
 
      public String getElemento(int linha, int coluna) {
-      return this.dados.get(linha+1)[coluna];
+      return this.dados.get(linha)[coluna];
         //[coluna] referencia da coluna do csv lido pelo vetor
         //linha faz referencia ao indice do array que guarda os dados no caso as colunas 
     }
@@ -102,7 +102,7 @@ public class LerArquivo {
   }
 //*/
   public double converteNumerico(int linha,int coluna){
-    return Double.parseDouble(this.getElemento(linha, coluna));
+    return Double.parseDouble(this.getElemento(linha+1, coluna));
   }
 /*
   public String [] colsNumericas(){

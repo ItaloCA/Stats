@@ -7,13 +7,17 @@ import java.util.Set;
 class Moda extends Operacoes{
 	LerArquivo dados;
 
+	Moda(LerArquivo dados){
+		this.dados = dados;
+	}
+
 	double calcular(int coluna){
 		double moda = 0;
 		int veses = 0;
 		double elemento;
 		Map<Double, Integer> frequencias_simples = new HashMap<Double, Integer>();
 
-		for (int i=0; i < (dados.getNumLinhas() - 1); i++) {
+		for (int i=0; i < (dados.getNumLinhas()); i++) {
 			elemento = dados.converteNumerico(i, coluna);
 
 			if(frequencias_simples.containsKey(elemento)){
