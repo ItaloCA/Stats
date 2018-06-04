@@ -50,4 +50,36 @@ class Graficos{
 	return "histograma.PNG";
 	}
 	
+
+	JTable distrFrequencia(int coluna, CalcMetricas csv){
+		String elemento = null;
+		Map<String, Integer> frequencias_simples = new HashMap<String, Integer>();
+
+		for (int i=0; i < (this.getNumLinhas()); i++) {
+			elemento = this.getElemento(i, coluna);
+
+			if(frequencias_simples.containsKey(elemento)){
+				frequencias_simples.put(elemento, frequencias_simples.get(elemento));
+			}
+			else {
+				frequencias_simples.put(elemento, 1);
+			}
+		}
+		String[][] distrFrequencia = new String[frequencias_simples.size() +1][2];
+
+		Set<String> chaves = new HashSet<String>(frequencias_simples.keySet());
+		Iterator<String> iterator = chaves.iterator();
+		int i = 1;
+		while (iterator.hasNext()){
+            elemento = iterator.next();
+			distrFrequencia[i][0] = elemento;
+			distrFrequencia[i][1] = frequencias_simples.get(elemento);
+
+		}	 	
+		JTable tabela = new JTable(distrFrequencia, {"X", "X = xi"}); 
+
+		return tabela;
+
+		
+	}
 }
