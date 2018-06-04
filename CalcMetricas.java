@@ -158,7 +158,7 @@ public class CalcMetricas extends CSV{
 			}
 		}
 
-		Set<String> chaves = new HashSet(frequencias_simples.keySet());
+		Set<String> chaves = new HashSet<String>(frequencias_simples.keySet());
 		Iterator<String> iterator = chaves.iterator();
 
 		while (iterator.hasNext()){
@@ -304,6 +304,65 @@ public class CalcMetricas extends CSV{
 
 		k = m4 / s4;
 		return k;
+	}
+
+/*
+	double esperanca(int coluna){
+		Map<Double, Double> X = new HashMap<Double, Double>();
+		Double xi, esperanca = 0;
+		for (int i = 0; i < getNumLinhas(); i++) {
+			xi = converteNumerico(i, coluna);
+			if (X.containsKey(xi)) {
+				X.put(xi, X.get(xi) + 1);
+			}else{
+				X.put(xi, 1);
+			}
+		}
+
+
+		Set<Double> chaves = new HashSet(X.keySet());
+		Iterator<Double> iterator = chaves.iterator();
+
+		while (iterator.hasNext()){
+            xi = iterator.next();
+            esperanca += X.get(xi) * xi;
+				
+		}	
+		
+		esperanca = esperanca / getNumLinhas();
+
+		return esperanca;
+
+	}
+//*/
+	double covariancia(int X, int Y){
+		double x_ = media(X);
+		double y_ = media(Y);
+
+		double mediaxy = 0;
+		for (int i=0; i < (this.getNumLinhas()); i++) {
+			mediaxy = mediaxy + converteNumerico(i, X)*converteNumerico(i, Y);
+			
+		}
+		mediaxy = mediaxy/(this.getNumLinhas());		 
+
+		return mediaxy - (x_*y_);
+	}
+
+	double ccl_Pearson(double varx, double vary, double covxy){
+		return (covxy / (Math.sqrt(varx * vary)));
+
+	}
+
+	double ccl_Pearson(int X, int Y){
+		double varx, vary, covxy;
+
+		covxy = covariancia(X, Y);
+		varx = variancia(X);
+		vary = variancia(Y);
+
+		return (covxy / (Math.sqrt(varx * vary)));
+
 	}
 
 }
