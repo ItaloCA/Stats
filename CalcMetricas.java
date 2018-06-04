@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class CalcMetricas extends CSV{
 
-	Map<String, Double> resultados = new HashMap<String, Double>();
+	Map<String, String> resultados = new HashMap<String, String>();
 
 	public static void main(String[] args) {
 			File file = new File("arq.csv");
@@ -27,9 +27,11 @@ public class CalcMetricas extends CSV{
 			System.out.println("  maximo:" + csv.maximo(3));
 			System.out.println("  minimo:" + csv.minimo(3));
 			
+			System.out.println("desvioPadrao:" + csv.desvioPadrao(3));
 
+			csv.calcular(3);
 
-		}	
+		}
 	public CalcMetricas (File arquivoCSV){
 		super.run(arquivoCSV);
 	}
@@ -82,6 +84,31 @@ public class CalcMetricas extends CSV{
 		return this.resultados.get(key);
 	}
 //*/
+
+
+	void calcular(int coluna){
+		if (this.colNumerica(coluna)) {
+			double media = media(coluna);
+			this.resultados.put("media", Double.toString(media));
+			this.resultados.put("mediana", Double.toString(mediana(coluna)));
+			this.resultados.put("moda", moda(coluna));
+			double variancia = variancia(coluna);
+			this.resultados.put("variancia", Double.toString(variancia));
+			this.resultados.put("maximo", Double.toString(maximo(coluna)));
+			this.resultados.put("minimo", Double.toString(minimo(coluna)));
+			this.resultados.put("desvio padrao", Double.toString(desvioPadrao(variancia)));
+			this.resultados.put("assimetria", Double.toString(assimetria(coluna, media)));
+			this.resultados.put("curtose", Double.toString(curtose(coluna, media)));
+			
+		}
+		else{
+			this.resultados.put("moda", moda(coluna));
+		}
+
+
+	}
+
+
 ///////////////////////////-------------------------------------------------- Calculos -----------------------------------------------------------/////////////////////////////////////////////////	
 	
 	double media(int coluna){
@@ -188,9 +215,95 @@ public class CalcMetricas extends CSV{
 
 
 
+	double desvioPadrao(int coluna){
+		double variancia = variancia(coluna);
+		return Math.sqrt(variancia);
+	}
+	double desvioPadrao(double variancia){
+		return Math.sqrt(variancia);
+	}
+
+
+	double assimetria(int coluna){
+		double media = media(coluna);
+		double m3 = 0, s3 = 0, sk, xi;
+		for (int i = 0; i < getNumLinhas(); i++) {
+			xi = (converteNumerico(i, coluna) - media);
+			m3 = m3 + (xi * xi * xi);
+		}
+		m3 = m3 / getNumLinhas();
+
+		for (int i = 0; i < getNumLinhas(); i++) {
+			xi = (converteNumerico(i, coluna) - media);
+			s3 = s3 + (xi * xi);
+		}
+		s3 = s3 / getNumLinhas();
+		s3 = s3*s3*s3;
+		s3 = Math.sqrt(s3);
+
+		sk = m3 / s3;
+		return sk;
+	}
+
+	double assimetria(int coluna, double media){
+		double m3 = 0, s3 = 0, sk, xi;
+		for (int i = 0; i < getNumLinhas(); i++) {
+			xi = (converteNumerico(i, coluna) - media);
+			m3 = m3 + (xi * xi * xi);
+		}
+		m3 = m3 / getNumLinhas();
+
+		for (int i = 0; i < getNumLinhas(); i++) {
+			xi = (converteNumerico(i, coluna) - media);
+			s3 = s3 + (xi * xi);
+		}
+		s3 = s3 / getNumLinhas();
+		s3 = s3*s3*s3;
+		s3 = Math.sqrt(s3);
+
+		sk = m3 / s3;
+		return sk;
+	}
 
 
 
+	double curtose(int coluna){
+		double media = media(coluna);
+		double m4 = 0, s4 = 0, k, xi;
+		for (int i = 0; i < getNumLinhas(); i++) {
+			xi = (converteNumerico(i, coluna) - media);
+			m4 = m4 + (xi * xi * xi * xi);
+		}
+		m4 = m4 / getNumLinhas();
 
+		for (int i = 0; i < getNumLinhas(); i++) {
+			xi = (converteNumerico(i, coluna) - media);
+			s4 = s4 + (xi * xi);
+		}
+		s4 = s4 / getNumLinhas();
+		s4 = s4*s4;
+
+		k = m4 / s4;
+		return k;
+	}
+
+	double curtose(int coluna, double media){
+		double m4 = 0, s4 = 0, k, xi;
+		for (int i = 0; i < getNumLinhas(); i++) {
+			xi = (converteNumerico(i, coluna) - media);
+			m4 = m4 + (xi * xi * xi * xi);
+		}
+		m4 = m4 / getNumLinhas();
+
+		for (int i = 0; i < getNumLinhas(); i++) {
+			xi = (converteNumerico(i, coluna) - media);
+			s4 = s4 + (xi * xi);
+		}
+		s4 = s4 / getNumLinhas();
+		s4 = s4*s4;
+
+		k = m4 / s4;
+		return k;
+	}
 
 }
