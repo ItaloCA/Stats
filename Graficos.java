@@ -82,4 +82,10 @@ class Graficos{
 
 		
 	}
+
+	String boxPlot(int coluna, CalcMetricas csv){
+		
+	}
+
+
 }
