@@ -69,6 +69,7 @@ public class CSV {
         //[coluna] referencia da coluna do csv lido pelo vetor
         //linha faz referencia ao indice do array que guarda os dados no caso as colunas 
     }
+    /*
     public void teste (){
 
       String  join = String.join(",",dados.get(1)[1]);
@@ -79,6 +80,6 @@ public class CSV {
 
 
     }
-
+*/
 
 }
