@@ -8,6 +8,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class CalcMetricas extends CSV{
+
+	Map<String, Double> resultados = new HashMap<String, Double>();
+
 	public static void main(String[] args) {
 			File file = new File("arq.csv");
 			CalcMetricas csv = new CalcMetricas(file);
@@ -74,8 +77,11 @@ public class CalcMetricas extends CSV{
 		return Numericas;
 		
 	} 
-
-
+/*
+	public double getResult(String key){
+		return this.resultados.get(key);
+	}
+//*/
 ///////////////////////////-------------------------------------------------- Calculos -----------------------------------------------------------/////////////////////////////////////////////////	
 	
 	double media(int coluna){
@@ -89,12 +95,19 @@ public class CalcMetricas extends CSV{
 	double mediana(int coluna){
 		double mediana = 0;
 		int tam = this.getNumLinhas();
+		double[] lista = new  double[tam];
+		for (int i = 0; i < tam; i++) {
+			lista[i] = this.converteNumerico(i, coluna);			
+		}
+		
+		Arrays.sort(lista);
+
 		if ((tam % 2) == 0) {
-			double x = this.converteNumerico(tam/2, coluna);
-			double y = this.converteNumerico((tam/2)+1, coluna);
+			double x = lista[tam/2];
+			double y = lista[(tam/2)+1];
 			mediana = (x+y)/2;
 		}else {
-			mediana = this.converteNumerico((tam/2) + 1, coluna);
+			mediana = lista[(tam/2) + 1];
 		}
 
 		return mediana;
