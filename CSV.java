@@ -6,6 +6,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/*--------------------------------------------------------------------------------
+import org.jfree.chart.*;
+import org.jfree.data.statistics.*;
+import org.jfree.chart.plot.PlotOrientation;
+
+//javac -classpath jfreechart-1.0.19/*.jar CSV.java   ----->  escrever no terminal
+//*/
 public class CSV {
       ArrayList<String[]> dados = new ArrayList <>(); //armazena dados do csv por meio de ArrayList
       int numColunas;

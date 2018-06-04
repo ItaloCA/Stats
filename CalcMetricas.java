@@ -6,7 +6,13 @@ import java.util.Map;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+/*--------------------------------------------------------------------------------
+import org.jfree.chart.*;
+import org.jfree.data.statistics.*;
+import org.jfree.chart.plot.PlotOrientation;
 
+//javac -classpath jfreechart-1.0.19/*.jar CSV.java   ----->  escrever no terminal
+//*/
 public class CalcMetricas extends CSV{
 
 	Map<String, String> resultados = new HashMap<String, String>();
@@ -30,6 +36,15 @@ public class CalcMetricas extends CSV{
 			System.out.println("desvioPadrao:" + csv.desvioPadrao(3));
 
 			csv.calcular(3);
+
+/*			try{
+				HistogramDataset dataset = new HistogramDataset();
+
+			}catch(Exception e){
+				System.out.println("deu ruim");
+			}
+
+//*/
 
 		}
 	public CalcMetricas (File arquivoCSV){
