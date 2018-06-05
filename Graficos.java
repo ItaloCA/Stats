@@ -171,7 +171,7 @@ class Graficos{
 		}
 
 
-		JTable tabela = new JTable(distrFrequencia, titulo); 
+		JTable tabela = new JTable(contingencia, titulo); 
 
 		return tabela;
 
