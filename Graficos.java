@@ -98,16 +98,72 @@ class Graficos{
 				frequencias_simples.put(elemento, 1);
 			}
 		}
-		String[][] distrFrequencia = new String[frequencias_simples.size() +1][2];
+		String[][] distrFrequencia = new String[frequencias_simples.size()][2];
 
 		Set<String> chaves = new HashSet<String>(frequencias_simples.keySet());
 		Iterator<String> iterator = chaves.iterator();
-		int i = 1;
+		int i = 0;
 		while (iterator.hasNext()){
             elemento = iterator.next();
 			distrFrequencia[i][0] = elemento;
 			distrFrequencia[i][1] = Integer.tostring(frequencias_simples.get(elemento));
+			i++;
 
+		}	 	
+		String[] titulo = new String[2];
+		titulo[0] = "X";
+		titulo[1] = "X = xi";
+
+
+		JTable tabela = new JTable(distrFrequencia, titulo); 
+
+		return tabela;
+
+		
+	}
+
+
+	JTable contingencia(int X, int Y, CalcMetricas csv){
+		String elemento = null, elementoy=null;
+		Map<String, Integer> frequencias_simples = new HashMap<String, Integer>();
+		Map<String, Integer> frequencias_simplesy = new HashMap<String, Integer>();
+		for (int i=0; i < (csv.getNumLinhas()); i++) {
+			elemento = csv.getElemento(i, X);
+
+			if(frequencias_simples.containsKey(elemento)){
+				frequencias_simples.put(elemento, frequencias_simples.get(elemento) +1);
+			}
+			else {
+				frequencias_simples.put(elemento, 1);
+			}
+		}
+		for (int i=0; i < (csv.getNumLinhas()); i++) {
+			elementoy = csv.getElemento(i, Y);
+
+			if(frequencias_simplesy.containsKey(elementoy)){
+				frequencias_simplesy.put(elementoy, frequencias_simplesy.get(elementoy) +1);
+			}
+			else {
+				frequencias_simplesy.put(elementoy, 1);
+			}
+		}
+
+
+		String[][] contingencia = new String[frequencias_simples.size()][frequencias_simplesy.size()];
+
+		Set<String> chaves = new HashSet<String>(frequencias_simples.keySet());
+		Set<String> chavesy = new HashSet<String>(frequencias_simples.keySet());
+
+		Iterator<String> iterator = chaves.iterator();
+		Iterator<String> iteratory = chavesy.iterator();
+		iteratory.next();
+		while (iterator.hasNext()){
+            elemento = iterator.next();
+
+            contingencia[][]
+
+			distrFrequencia[i][0] = elemento;
+			distrFrequencia[i][1] = Integer.tostring(frequencias_simples.get(elemento));
 		}	 	
 		String[] titulo = new String[2];
 		titulo[0] = "X";
