@@ -157,10 +157,11 @@ class Graficos{
 		Iterator<String> iterator = chaves.iterator();
 		Iterator<String> iteratory = chavesy.iterator();
 		iteratory.next();
+		int i = 0, j = 0;
 		while (iterator.hasNext()){
             elemento = iterator.next();
 
-            contingencia[][]
+            contingencia[i][j]
 
 			distrFrequencia[i][0] = elemento;
 			distrFrequencia[i][1] = Integer.tostring(frequencias_simples.get(elemento));
