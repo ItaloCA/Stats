@@ -32,10 +32,9 @@ import javafx.geometry.Insets;
 public class Main extends Application{
 	//elementos da interface grafica
 	Button confirmar;
-	Scene cena,cena2;
+	Scene cena;
 	File arquivo;
 	CalcMetricas csv;
-	TableView tabela = new TableView();
 	
 	
 	
@@ -51,7 +50,7 @@ public class Main extends Application{
 		hbox.getChildren().add(confirmar);
 		hbox.setPadding(new Insets(100, 100, 100, 100));
 		cena = new Scene(layout,950,700);
-		//cena.getStylesheets().addAll(this.getClass().getResource("Style.css").toExternalForm());
+		cena.getStylesheets().addAll(this.getClass().getResource("Style.css").toExternalForm());
 		janela.setTitle("Stats");
 		janela.setScene(cena);
 		janela.show();
