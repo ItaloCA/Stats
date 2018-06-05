@@ -57,10 +57,10 @@ class Graficos{
      	int largura = 500;
        	int altura = 500;
 
-       	File graficoimg;
+       	File graficoimg = new File("grafico.PNG");
 		try {
         	ChartUtilities.saveChartAsPNG(graficoimg, grafico, largura, altura);
-        } catch (Exception e) {}
+        } catch (Exception e) { System.out.println("Graficos: linha 63: ERRO"); }
 
 		/*public static JFreeChart createHistogram(String title,
                                          String xAxisLabel,
@@ -92,7 +92,7 @@ class Graficos{
 			elemento = csv.getElemento(i, coluna);
 
 			if(frequencias_simples.containsKey(elemento)){
-				frequencias_simples.put(elemento, frequencias_simples.get(elemento));
+				frequencias_simples.put(elemento, frequencias_simples.get(elemento) +1);
 			}
 			else {
 				frequencias_simples.put(elemento, 1);
@@ -106,7 +106,7 @@ class Graficos{
 		while (iterator.hasNext()){
             elemento = iterator.next();
 			distrFrequencia[i][0] = elemento;
-			distrFrequencia[i][1] = frequencias_simples.get(elemento);
+			distrFrequencia[i][1] = Integer.tostring(frequencias_simples.get(elemento));
 
 		}	 	
 		String[] titulo = new String[2];
@@ -181,7 +181,7 @@ class Graficos{
 		int largura = 500;
        	int altura = 500;
 
-       	File graficoimg;
+       	File graficoimg = new File("grafico.PNG");
 		try {
         	ChartUtilities.saveChartAsPNG(graficoimg, chart, largura, altura);
         } catch (Exception e) { System.out.println("Graficos: linha 163: ERRO");}
@@ -212,7 +212,7 @@ class Graficos{
     	int largura = 500;
        	int altura = 500;
 
-       	File graficoimg;
+       	File graficoimg = new File("grafico.PNG");
 		try {
         	ChartUtilities.saveChartAsPNG(graficoimg, grafico, largura, altura);
         } catch (Exception e) { System.out.println("Graficos: linha 214: ERRO");}
@@ -222,49 +222,41 @@ class Graficos{
 
 
 	public File gBarras(int coluna, CalcMetricas csv){
-		BarChart_AWT chart = new BarChart_AWT(csv.titulos[coluna], 
-         "Which car do you like?");
 
 
-		HistogramDataset dataset = new HistogramDataset();
-		String titulo = csv.titulo[coluna];
-		double[] vetor = new double[csv.getNumLinhas];
-		for (int i=0; i < csv.getNumLinhas(); i++) {
-			vetor[i] = csv.converteNumerico(i, coluna);
-		}
 
-		dataset.addSeries("Histograma", vetor, 10);
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset( ); 
+      
+
+		dataset.addValue( 1.0 , fiat , speed ); 
+
+		
 
 		PlotOrientation orientacao = PlotOrientation.VERTICAL;
-		JFreeChart grafico = ChartFactory.createHistogram( "Histograma", "Numero", "Valor", 
-                dataset, orientacao, false, false, false);
+
+		JFreeChart gBarras = ChartFactory.createBarChart(
+         						csv.titulos[coluna],           
+         						"Dado",            
+         						"Vezes",            
+         						dataset,          
+         						orientacao,           
+         						true, true, false);
+	
+    
+
+
 
      	int largura = 500;
        	int altura = 500;
 
-       	File graficoimg;
+       	File graficoimg = new File("grafico.PNG");
 		try {
-        	ChartUtilities.saveChartAsPNG(graficoimg, grafico, largura, altura);
-        } catch (Exception e) {}
-
-		/*public static JFreeChart createHistogram(String title,
-                                         String xAxisLabel,
-                                         String yAxisLabel,
-                                         IntervalXYDataset dataset)
+        	ChartUtilities.saveChartAsPNG(graficoimg, gBarras, largura, altura);
+        } catch (Exception e) { System.out.println("Graficos: linha 259: ERRO"); }
 
 
-
-		public static JFreeChart createHistogram(String title,
-                                         String xAxisLabel,
-                                         String yAxisLabel,
-                                         IntervalXYDataset dataset,
-                                         PlotOrientation orientation,
-                                         boolean legend,
-                                         boolean tooltips,
-                                         boolean urls)
-
-		*/
-
+	
+	
 	return graficoimg;
 	}
 
