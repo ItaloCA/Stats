@@ -124,51 +124,51 @@ class Graficos{
 
 
 	JTable contingencia(int X, int Y, CalcMetricas csv){
-		String elemento = null, elementoy=null;
+		String elemento = null, elementoy=null, aux = null;
 		Map<String, Integer> frequencias_simples = new HashMap<String, Integer>();
-		Map<String, Integer> frequencias_simplesy = new HashMap<String, Integer>();
+
 		for (int i=0; i < (csv.getNumLinhas()); i++) {
 			elemento = csv.getElemento(i, X);
-
-			if(frequencias_simples.containsKey(elemento)){
-				frequencias_simples.put(elemento, frequencias_simples.get(elemento) +1);
-			}
-			else {
-				frequencias_simples.put(elemento, 1);
-			}
-		}
-		for (int i=0; i < (csv.getNumLinhas()); i++) {
 			elementoy = csv.getElemento(i, Y);
+			aux = elemento;
+			aux.concat(" ");
+			aux.concat(elementoy);
 
-			if(frequencias_simplesy.containsKey(elementoy)){
-				frequencias_simplesy.put(elementoy, frequencias_simplesy.get(elementoy) +1);
+			if(frequencias_simples.containsKey(aux)){
+				frequencias_simples.put(aux, frequencias_simples.get(aux) +1);
 			}
 			else {
-				frequencias_simplesy.put(elementoy, 1);
+				frequencias_simples.put(aux, 1);
 			}
 		}
-
-
+		
 		String[][] contingencia = new String[frequencias_simples.size()][frequencias_simplesy.size()];
 
-		Set<String> chaves = new HashSet<String>(frequencias_simples.keySet());
+		Set<String> chavesx = new HashSet<String>(frequencias_simples.keySet());
 		Set<String> chavesy = new HashSet<String>(frequencias_simples.keySet());
 
-		Iterator<String> iterator = chaves.iterator();
+		Iterator<String> iteratorx = chavesx.iterator();
 		Iterator<String> iteratory = chavesy.iterator();
-		iteratory.next();
+		elementoy = iteratory.next();
 		int i = 0, j = 0;
-		while (iterator.hasNext()){
-            elemento = iterator.next();
-
-            contingencia[i][j]
-
-			distrFrequencia[i][0] = elemento;
-			distrFrequencia[i][1] = Integer.tostring(frequencias_simples.get(elemento));
+		while (iteratorx.hasNext()){
+            elemento = iteratorx.next();
+            aux = elemento;
+            aux.concat(" ");
+            aux.concat(elementoy);
+            contingencia[i][j] = frequencias_simples.get(aux);
+            i++;
+            if(iteratorx.hasNext() == false && iteratory.hasNext() == true){
+            	elementoy = iteratory.next();
+            	iteratorx = chavesx.iterator();
+            	j++;
+            	i = 0;
+            }
 		}	 	
-		String[] titulo = new String[2];
-		titulo[0] = "X";
-		titulo[1] = "X = xi";
+		String[] titulo = new String[frequencias_simples.size()];
+		for (int i = 0; i<frequencias_simples.size(); i++) {
+			titulo[i] = chavesx.get(i);
+		}
 
 
 		JTable tabela = new JTable(distrFrequencia, titulo); 

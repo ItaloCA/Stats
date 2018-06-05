@@ -7,46 +7,13 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 /*--------------------------------------------------------------------------------
-import org.jfree.chart.*;
-import org.jfree.data.statistics.*;
-import org.jfree.chart.plot.PlotOrientation;
-
 //javac -classpath jfreechart-1.0.19/*.jar CSV.java   ----->  escrever no terminal
 //*/
 public class CalcMetricas extends CSV{
 
 	Map<String, String> resultados = new HashMap<String, String>();
 
-	public static void main(String[] args) {
-			File file = new File("arq.csv");
-			CalcMetricas csv = new CalcMetricas(file);
-
-			for (int i=0; i < csv.getNumLinhas(); i++) {
-				System.out.println(csv.getElemento(i,3));
-				
-			}
-			System.out.println("  media:" + csv.media(3));
-			System.out.println("  moda:" + csv.moda(3));
-			System.out.println("  moda:" + csv.moda(2));
-			System.out.println("  mediana:" + csv.mediana(3));
-			System.out.println("  variancia:" + csv.variancia(3));
-			System.out.println("  maximo:" + csv.maximo(3));
-			System.out.println("  minimo:" + csv.minimo(3));
-			
-			System.out.println("desvioPadrao:" + csv.desvioPadrao(3));
-
-			csv.calcular(3);
-
-/*			try{
-				HistogramDataset dataset = new HistogramDataset();
-
-			}catch(Exception e){
-				System.out.println("deu ruim");
-			}
-
-//*/
-
-		}
+	
 	public CalcMetricas (File arquivoCSV){
 		super.run(arquivoCSV);
 	}
@@ -56,7 +23,7 @@ public class CalcMetricas extends CSV{
 	public int getNumColunas(){
 		return this.numColunas;
 	}
-	
+	// retorna de a coluna possui elementos que possa ser convertidos para double
 	public boolean colNumerica(int coluna){
 		int linha = 0;
 		String elemento=null;
@@ -77,6 +44,8 @@ public class CalcMetricas extends CSV{
 		}
 		
 	}
+	// retorna o elemento da linha e coluna passadas como parametro
+	// transformado em double
 	public double converteNumerico(int linha,int coluna){
 		return Double.parseDouble(this.getElemento(linha, coluna));
 	}
@@ -94,13 +63,13 @@ public class CalcMetricas extends CSV{
 		return Numericas;
 		
 	} 
-/*
+/*	retorna um resultado guardado no map resultados
 	public double getResult(String key){
 		return this.resultados.get(key);
 	}
 //*/
 
-
+	// calcula as metricas e guarda no map resultado
 	void calcular(int coluna){
 		if (this.colNumerica(coluna)) {
 			double media = media(coluna);
@@ -321,7 +290,7 @@ public class CalcMetricas extends CSV{
 		return k;
 	}
 
-/*
+/*  //esperanca com distribuicao de probabilidade
 	double esperanca(int coluna){
 		Map<Double, Double> X = new HashMap<Double, Double>();
 		Double xi, esperanca = 0;

@@ -6,13 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/*--------------------------------------------------------------------------------
-import org.jfree.chart.*;
-import org.jfree.data.statistics.*;
-import org.jfree.chart.plot.PlotOrientation;
 
-//javac -classpath jfreechart-1.0.19/*.jar CSV.java   ----->  escrever no terminal
-//*/
 public class CSV {
       ArrayList<String[]> dados = new ArrayList <>(); //armazena dados do csv por meio de ArrayList
       int numColunas;
@@ -63,23 +57,11 @@ public class CSV {
        
      } 
 
-
+     //retorna um elemento do modelo de dados
      public String getElemento(int linha, int coluna) {
       return this.dados.get(linha)[coluna];
         //[coluna] referencia da coluna do csv lido pelo vetor
         //linha faz referencia ao indice do array que guarda os dados no caso as colunas 
     }
-    /*
-    public void teste (){
-
-      String  join = String.join(",",dados.get(1)[1]);
-      System.out.println(join);
-      System.out.println("-------------------------");
-          //dados.get(i);
-          //System.out.println(this.titulo.length);
-
-
-    }
-*/
 
 }
