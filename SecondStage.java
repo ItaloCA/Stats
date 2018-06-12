@@ -108,10 +108,7 @@ public  class SecondStage extends JFrame implements ActionListener {
 			pColuna.setVisible(true);
 			aColuna.setVisible(true);
 
-			getContentPane().add(painelFundo);
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
-			setSize(1000, 700);
-			setVisible(true);
+			painelFundo.repaint();
 
 		}
 		//caso seja coluna anterior aumenta-se o index que diz em qual coluna estamos
@@ -139,12 +136,7 @@ public  class SecondStage extends JFrame implements ActionListener {
 			aColuna.setVisible(true);
 			load.setVisible(true);
 			
-			
-
-			getContentPane().add(painelFundo);
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
-			setSize(1000, 700);
-			setVisible(true);
+			painelFundo.repaint();
 		}
 		//carrega outro arquivo
 		if(evento.getSource() == load){
@@ -172,10 +164,7 @@ public  class SecondStage extends JFrame implements ActionListener {
 			aColuna.setVisible(true);
 			load.setVisible(true);
 		
-			getContentPane().add(painelFundo);
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
-			setSize(1000, 700);
-			setVisible(true);
+			painelFundo.repaint();
 		}
 	}
 	//cria uma matriz de Object de univariadas
